@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './App.css';
 import Header from './components/Header';
@@ -22,13 +22,15 @@ function App() {
     <button onClick={()=>setLogin(!login)}>{login?"logout":"login"}
     </button>
     
-    <Switch>
-    <Route path='/' component={Home} exact />
-    <Route path='/about' component={About} />
-    <Route path='/profile' component={Profile} />
-    <Route path='/post/:id' component={Post} />
-    <Route component={NotFound} />
-    </Switch>
+    <Routes>
+    <Route path='/' element={<Home/>} exact />
+    <Route path='/about' element={<About />} />
+    <Route path='/profile'>
+    <Profile login={login} />
+    </Route>
+    <Route path='/post/:id' element={<Post />} />
+    <Route element={<NotFound />} />
+    </Routes>
     </div>
     
     
